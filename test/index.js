@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import intsort from '../lib'
+import intsort, { lensort } from '..'
 
 let allocate = size => Array(size).fill(0)
-let nativesort = x => x.slice().sort((a, b) => a - b)
+let nativesort = (xs, cmp = (a, b) => a - b) => xs.slice().sort(cmp)
 
 describe('intsort', () => {
 
@@ -25,4 +25,47 @@ describe('intsort', () => {
 	it('should sort small integer arrays', () => {
 		expect(small_result).to.deep.equal(small_sorted)
 	})
+	
+	let med = allocate(1000).map(() => Math.random() * 1000 | 0)
+	let med_sorted = nativesort(med)
+	let med_result = intsort(med)
+
+	it('should sort medium integer arrays', () => {
+		expect(med_result).to.deep.equal(med_sorted)
+	})
+	
+	let large = allocate(10000).map(() => Math.random() * 10000 | 0)
+	let large_sorted = nativesort(large)
+	let large_result = intsort(large)
+
+	it('should sort large integer arrays', () => {
+		expect(large_result).to.deep.equal(large_sorted)
+	})
+})
+
+describe('lensort', () => {
+	let complex = (n, extra) => ({ n, extra })
+
+	let tiny_complex = [
+		[1, 2],
+		[3, 6],
+		[2, 7],
+		[2, 3],
+		[3, 1],
+		[8, 3]
+	].map(args => complex(...args))
+	let tiny_complex_sorted = [
+		[1, 2],
+		[2, 7],
+		[2, 3],
+		[3, 6],
+		[3, 1],
+		[8, 3]
+	].map(args => complex(...args))	
+	let tiny_complex_result = lensort(tiny_complex, x => x.n)
+
+	it('should perform a stable sort', () => {
+		expect(tiny_complex_result).to.deep.equal(tiny_complex_sorted)
+	})
+	
 })

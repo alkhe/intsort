@@ -1,0 +1,32 @@
+impl_c
+0.0046 ms ± 0.58%
+impl_k
+0.1057 ms ± 0.38%
+impl_M
+327.7824 ms ± 4.57%
+impl_c_inorder
+0.0048 ms ± 0.66%
+impl_k_inorder
+0.0707 ms ± 0.64%
+impl_M_inorder
+256.8417 ms ± 5.86%
+impl_c_lens
+0.0170 ms ± 1.94%
+impl_k_lens
+0.2485 ms ± 0.14%
+control_c
+0.0050 ms ± 0.44%
+control_k
+0.0968 ms ± 3.55%
+control_M
+572.2314 ms ± 0.97%
+control_c_inorder
+0.0116 ms ± 1.73%
+control_k_inorder
+0.2163 ms ± 0.23%
+control_M_inorder
+547.9793 ms ± 0.88%
+control_c_lens
+0.0132 ms ± 3.45%
+control_k_lens
+0.2473 ms ± 2.61%

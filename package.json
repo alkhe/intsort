@@ -2,10 +2,11 @@
   "name": "intsort",
   "version": "0.0.1",
   "description": "An efficient integer sort that outperforms v8 Array#sort.",
-  "main": "./lib/index.js",
+  "main": "./lib/radix.js",
   "scripts": {
     "test": "mocha --require babel-register",
-    "build": "mkdir -p ./lib && cat ./src/radix.js | babel > ./lib/index.js"
+    "build": "BABEL_ENV=production babel src --out-dir lib",
+    "dev": "BABEL_ENV=development babel src --out-dir lib -w"
   },
   "keywords": [
     "sort",
@@ -21,6 +22,7 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.16.3",
+    "benchmark": "^2.1.1",
     "chai": "^3.5.0",
     "mocha": "^3.1.0"
   }
